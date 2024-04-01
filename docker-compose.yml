@@ -14,7 +14,7 @@ services:
       - db:/var/lib/mysql
   app:
     container_name: stationSki
-    image: hibafelfel/backend  # Replace with the actual image and tag
+    image: ichrakmhiri1506/backend  # Replace with the actual image and tag
     restart: on-failure
     environment:
       SPRING_APPLICATION_JSON: '{
