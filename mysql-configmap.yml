@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-config-map
-data:
-  mysql-server: "demo-app-mysql"       # Le nom du service MySQL dans votre cluster Kubernetes
-  mysql-database-name: 'stationSki'    # Le nom de la base de données utilisée par votre application
-  mysql-user-username: 'root'        # Le nom d'utilisateur MySQL pour votre application

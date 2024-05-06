@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-spring-boot
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: backend-spring-boot
+  template:
+    metadata:
+      labels:
+        app: backend-spring-boot
+        env: prod
+    spec:
+      containers:
+        - name: backend-spring-boot
+          image: chaimakh/backend_spring_boot:latest
+          ports:
+            - containerPort: 8085
+          env:
+            - name: DB_URL
+              value: "jdbc:postgresql://postgres:5432/kanban"
+            - name: POSTGRES_USER
+              value: "kanban"
+            - name: POSTGRES_PASSWORD
+              value: "kanban"
+            - name: POSTGRES_DB
+              value: "kanban"
