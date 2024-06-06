@@ -1,32 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: mysql
 spec:
   selector:
     matchLabels:
-      app: postgres
+      app: mysql
   replicas: 2
   template:
     metadata:
       labels:
-        app: postgres
+        app: mysql
     spec:
       containers:
-        - name: postgres
-          image: postgres:9.6-alpine
+        - name: mysql
+          image: mysql:latest
           ports:
-            - containerPort: 5432
+            - containerPort: 3306  # Port MySQL par défaut
           env:
-            - name: POSTGRES_USER
-              value: "kanban"
-            - name: POSTGRES_PASSWORD
-              value: "kanban"
-            - name: POSTGRES_DB
-              value: "kanban"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: ""  # Mot de passe vide
+            - name: MYSQL_DATABASE
+              value: "stationSki"  # Nom de la base de données vide
           volumeMounts:
-            - name: postgres-storage
-              mountPath: /var/lib/pgsql/data
+            - name: mysql-storage
+              mountPath: /var/lib/mysql/data
       volumes:
-        - name: postgres-storage
+        - name: mysql-storage
           emptyDir: {}
